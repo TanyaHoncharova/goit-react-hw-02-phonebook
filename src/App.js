@@ -18,7 +18,8 @@ class App extends Component {
   };
 
   addContact = (name, number) => {
-    const isInContacts = this.state.contacts.some(contact => contact.name.toLowerCase === name.toLowerCase)
+    const normolaseName = name.toLowerCase();
+    const isInContacts = this.state.contacts.some(contact => contact.name === normolaseName)
     if (isInContacts) { alert(`${name} is already in contacts.`); return }
     
     if (name && number) {
@@ -47,8 +48,8 @@ class App extends Component {
     const { contacts, filter } = this.state;
     const totalContactsCount = contacts.length;
 
-    const normalizedFilter = this.state.filter.toLowerCase();
-    const visibleContacts = this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter),);
+    const normalizedFilter = filter.toLowerCase();
+    const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter),);
 
     return (
       <div className="App">
